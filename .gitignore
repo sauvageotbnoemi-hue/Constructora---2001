@@ -1,0 +1,8 @@
+.DS_Store
+**/.DS_Store
+v1/
+v3/
+v4/
+lib/
+_standalone*.html
+assets/img/Gemini_Generated_Image_*.jpeg

@@ -1,0 +1,13 @@
+<IfModule mod_headers.c>
+  <FilesMatch "\.(html|css|js|mjs|json)$">
+    Header set Cache-Control "no-cache, must-revalidate"
+  </FilesMatch>
+  <FilesMatch "\.(webp|jpg|jpeg|png|svg|woff|woff2|ico)$">
+    Header set Cache-Control "public, max-age=2592000"
+  </FilesMatch>
+</IfModule>
+
+# Fallback a index.html
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+</IfModule>
