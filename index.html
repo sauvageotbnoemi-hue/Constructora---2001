@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261019A" />
+<link rel="stylesheet" href="styles.css?v=20261020A" />
 <link rel="icon" href="assets/logo/isotipo-blanco.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -81,17 +81,26 @@
       </div>
       <div class="pillars">
         <article class="pillar" data-reveal>
-          <span class="pillar__n">1</span>
+          <div class="pillar__head">
+            <span class="pillar__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s7-6.2 7-11a7 7 0 1 0-14 0c0 4.8 7 11 7 11z"/><circle cx="12" cy="10" r="2.5"/></svg></span>
+            <span class="pillar__n">01</span>
+          </div>
           <h3 class="pillar__t">Gestionamos</h3>
           <p>Conocemos su terreno, su zona y los permisos. Somos quienes hablamos con usted y coordinamos todo.</p>
         </article>
         <article class="pillar" data-reveal>
-          <span class="pillar__n">2</span>
+          <div class="pillar__head">
+            <span class="pillar__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M10 20v-6h4v6"/></svg></span>
+            <span class="pillar__n">02</span>
+          </div>
           <h3 class="pillar__t">Armamos el proyecto</h3>
           <p>Desarrolladores con los que ya hemos trabajado en proyectos anteriores lo diseñan y lo llevan hasta la aprobación.</p>
         </article>
         <article class="pillar" data-reveal>
-          <span class="pillar__n">3</span>
+          <div class="pillar__head">
+            <span class="pillar__ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.6 9.3c0-1 1-1.7 2.4-1.7s2.5.7 2.5 1.8c0 2.4-5 1.3-5 3.6 0 1.1 1.1 1.8 2.5 1.8s2.4-.7 2.4-1.6"/></svg></span>
+            <span class="pillar__n">03</span>
+          </div>
           <h3 class="pillar__t">Ponemos la plata</h3>
           <p>Inversionistas con los que trabajamos de forma permanente aportan lo que cada proyecto necesita. Elegimos al que calza con su terreno.</p>
         </article>
@@ -179,15 +188,6 @@
     </div>
   </section>
 
-  <!-- ░░ RESPIRO VISUAL — obra en terreno ░░ -->
-  <section class="confianza" id="obra" aria-label="Nuestro trabajo en terreno, Colina">
-    <div class="wrap">
-      <figure class="confianza__frame" data-reveal>
-        <img src="assets/img/colina-desarrollo.jpg" alt="Trabajadores desarrollando un terreno del cerro de Colina" />
-      </figure>
-    </div>
-  </section>
-
   <!-- ░░ UN EJEMPLO ░░ -->
   <section class="ejemplo" id="ejemplo">
     <div class="wrap">
@@ -203,11 +203,11 @@
       </div>
       <div class="formula" data-reveal>
         <div class="formula__row">
-          <div class="formula__box"><span class="formula__sub">Hoy, en crudo</span><b class="formula__tag">$1.000 millones</b></div>
+          <div class="formula__box"><span class="formula__sub">Hoy, en crudo</span><b class="formula__tag" data-count="1000" data-prefix="$" data-suffix=" millones">$1.000 millones</b></div>
           <div class="formula__op">+</div>
-          <div class="formula__box"><span class="formula__sub">Lo que creamos con el proyecto</span><b class="formula__tag">+$500 millones</b></div>
+          <div class="formula__box"><span class="formula__sub">Lo que creamos con el proyecto</span><b class="formula__tag" data-count="500" data-prefix="+$" data-suffix=" millones">+$500 millones</b></div>
           <div class="formula__op">=</div>
-          <div class="formula__box formula__box--on"><span class="formula__sub">Lo que queda para usted</span><b class="formula__tag">$1.500 millones</b></div>
+          <div class="formula__box formula__box--on"><span class="formula__sub">Lo que queda para usted</span><b class="formula__tag" data-count="1500" data-prefix="$" data-suffix=" millones">$1.500 millones</b></div>
         </div>
         <p class="formula__foot finep">Ejemplo ilustrativo para los caminos 2 y 3. Ya está descontado todo lo nuestro: gastos, costo de la plata invertida y ganancia. No es una oferta ni una promesa: cada terreno es distinto y no todos suben en la misma proporción. En el Camino 3, parte de ese valor viene en lotes que usted decide cuándo vender. El Camino 1 no sube: se vende al precio real que pague el mercado. El número de su terreno se lo damos por escrito, después de estudiarlo, sin costo.</p>
       </div>
@@ -299,6 +299,11 @@
   <div class="wrap foot__legal"><span>© 2026 Constructora 2001 SA.</span><span>Ganamos solo si usted gana.</span></div>
 </footer>
 
-<script defer src="main.js?v=20261019A"></script>
+<a class="wfab" href="#contacto" data-fab aria-label="Hablemos por WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3a9 9 0 0 0-7.7 13.7L3 21l4.4-1.2A9 9 0 1 0 12 3z"/><path d="M8.4 9.3h7.2M8.4 12.3h4.8" stroke="var(--naranja)" stroke-width="1.6" stroke-linecap="round" fill="none"/></svg>
+  <span>Hablemos</span>
+</a>
+
+<script defer src="main.js?v=20261020A"></script>
 </body>
 </html>

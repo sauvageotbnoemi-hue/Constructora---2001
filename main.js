@@ -87,6 +87,32 @@
     marks.forEach(function(m){ io.observe(m); });
   }
 
+  /* ---------- Conteo animado de los números del ejemplo ---------- */
+  function initCountUp(){
+    var host=document.querySelector(".formula"); if(!host) return;
+    var els=[].slice.call(host.querySelectorAll("[data-count]")); if(!els.length) return;
+    function dots(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
+    function render(el,v){ el.textContent=(el.getAttribute("data-prefix")||"")+dots(v)+(el.getAttribute("data-suffix")||""); }
+    function run(){
+      els.forEach(function(el){
+        var target=parseInt(el.getAttribute("data-count"),10)||0;
+        if(reduced){ render(el,target); return; }
+        var t0=performance.now(), dur=1000;
+        (function stp(t){ var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3); render(el,Math.round(target*e)); if(p<1) requestAnimationFrame(stp); })(performance.now());
+      });
+    }
+    if(!("IntersectionObserver" in window)){ run(); return; }
+    var io=new IntersectionObserver(function(en){ en.forEach(function(e){ if(e.isIntersecting){ run(); io.disconnect(); } }); }, {threshold:.4});
+    io.observe(host);
+  }
+
+  /* ---------- Botón flotante "Hablemos" ---------- */
+  function initFab(){
+    var f=document.querySelector("[data-fab]"); if(!f) return;
+    function upd(){ f.classList.toggle("is-show", scrollY>innerHeight*0.7); }
+    addEventListener("scroll",upd,{passive:true}); upd();
+  }
+
   function initForm(){
     var form=document.querySelector("[data-form]"); if(!form) return;
     form.addEventListener("submit", function(e){
@@ -99,7 +125,7 @@
 
   function boot(){
     safe(initProgress,"progress"); safe(initNav,"nav"); safe(initReveals,"reveals");
-    safe(initAnchors,"anchors"); safe(initForm,"form");
+    safe(initAnchors,"anchors"); safe(initForm,"form"); safe(initCountUp,"countUp"); safe(initFab,"fab");
     safe(initHeroParallax,"heroParallax"); safe(initMagnetic,"magnetic"); safe(initMarkReveal,"markReveal");
   }
   if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",boot);

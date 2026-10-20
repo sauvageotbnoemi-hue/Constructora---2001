@@ -22,7 +22,7 @@ a{color:inherit;text-decoration:none}
 mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color:inherit;padding:0 .05em}
 
 .kicker{font-size:.78rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--naranja);margin-bottom:1.4rem}
-.kicker--light{color:var(--mostaza)}
+.kicker--light{color:#d7b36a}
 .kicker--hero{color:var(--crema);opacity:.95;text-shadow:0 1px 12px rgba(0,0,0,.45)}
 .h2{font-family:var(--display);font-weight:800;font-size:clamp(2rem,4.4vw,3.2rem);line-height:1.06;letter-spacing:-.01em;color:var(--verde)}
 .h2--light{color:var(--crema)}
@@ -522,9 +522,14 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 .pillars{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(1rem,2.4vw,1.5rem);margin-top:clamp(1.2rem,3vw,2rem)}
 .pillar{background:#fff;border:1px solid var(--line);border-radius:14px;padding:clamp(1.5rem,3vw,2.1rem);transition:transform .35s var(--ease),box-shadow .35s var(--ease)}
 .pillar:hover{transform:translateY(-4px);box-shadow:0 28px 56px -34px rgba(0,0,0,.4)}
-.pillar__n{display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:12px;background:var(--verde);color:var(--crema);font-family:var(--display);font-weight:800;font-size:1.3rem;margin-bottom:1rem}
-.pillar:nth-child(2) .pillar__n{background:var(--mostaza)}
-.pillar:nth-child(3) .pillar__n{background:var(--naranja);color:var(--tinta)}
+.pillar__head{display:flex;align-items:center;gap:.8rem;margin-bottom:1.1rem}
+.pillar__ic{flex:none;width:50px;height:50px;border-radius:13px;background:rgba(30,58,46,.09);display:flex;align-items:center;justify-content:center}
+.pillar__ic svg{width:25px;height:25px;fill:none;stroke:var(--verde);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pillar:nth-child(2) .pillar__ic{background:rgba(169,131,43,.14)}
+.pillar:nth-child(2) .pillar__ic svg{stroke:var(--mostaza)}
+.pillar:nth-child(3) .pillar__ic{background:rgba(255,105,15,.14)}
+.pillar:nth-child(3) .pillar__ic svg{stroke:var(--naranja)}
+.pillar__n{font-family:var(--display);font-weight:800;font-size:.92rem;letter-spacing:.08em;color:var(--muted)}
 .pillar__t{font-family:var(--display);font-weight:800;font-size:clamp(1.2rem,2vw,1.45rem);color:var(--verde);margin-bottom:.5rem}
 .pillar p{color:#4a4d44;font-size:.96rem;line-height:1.55}
 .detras__note{max-width:64ch;margin:clamp(2rem,4vw,2.8rem) auto 0;text-align:center;color:#4a4d44;font-size:clamp(.98rem,1.5vw,1.08rem);line-height:1.6}
@@ -569,6 +574,14 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 .formula .formula__box{align-items:center;text-align:center}
 .formula__box--on .formula__sub{color:#ffd9bd}
 .formula__foot.finep{font-size:.8rem;line-height:1.5;opacity:.72;text-align:left;max-width:74ch}
+
+/* Botón flotante "Hablemos" (CTA persistente) */
+.wfab{position:fixed;right:clamp(1rem,3vw,1.6rem);bottom:clamp(1rem,3vw,1.6rem);z-index:70;display:inline-flex;align-items:center;gap:.55rem;background:var(--naranja);color:var(--tinta);font-family:var(--display);font-weight:800;font-size:.95rem;padding:.8rem 1.2rem;border-radius:40px;box-shadow:0 14px 34px -12px rgba(0,0,0,.45);opacity:0;visibility:hidden;transform:translateY(14px);transition:opacity .35s var(--ease),transform .35s var(--ease),background .25s,color .25s}
+.wfab.is-show{opacity:1;visibility:visible;transform:none}
+.wfab:hover{background:var(--naranja-osc);color:#fff;transform:translateY(-2px)}
+.wfab svg{width:23px;height:23px;fill:currentColor}
+@media(max-width:560px){.wfab span{display:none}.wfab{padding:.95rem;border-radius:50%}}
+@media(prefers-reduced-motion:reduce){.wfab{transition:opacity .2s linear}}
 
 @media (prefers-reduced-motion:reduce){
   .hero__scroll svg,.ba__handle svg,.pin__btn::before,.hero__bg img,.grow__guide span{animation:none}
