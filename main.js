@@ -87,54 +87,36 @@
     marks.forEach(function(m){ io.observe(m); });
   }
 
-  /* ---------- Visor del proceso: oruga curva + imagen 3D por paso ---------- */
+  /* ---------- Ruta de valor (visor del proceso, 8 pasos) ---------- */
   function initGrow(){
     var g=document.querySelector("[data-grow]"); if(!g) return;
-    var titleEl=g.querySelector("[data-grow-title]"), textEl=g.querySelector("[data-grow-text]"),
-        idxEl=g.querySelector("[data-grow-idx]"), badgeEl=g.querySelector("[data-grow-idx-badge]"),
-        emojiEl=g.querySelector("[data-grow-emoji]"), artEl=g.querySelector(".scene3d__art"),
-        glowEl=g.querySelector("[data-grow-glow]"), cater=g.querySelector("[data-cater]");
-    if(!cater) return;
+    var img=g.querySelector("[data-grow-img]"), fill=g.querySelector("[data-grow-fill]"),
+        titleEl=g.querySelector("[data-grow-title]"), textEl=g.querySelector("[data-grow-text]"),
+        idxEl=g.querySelector("[data-grow-idx]"), badgeEl=g.querySelector("[data-grow-idx-badge]");
+    var nodes=[].slice.call(g.querySelectorAll(".gnode")), layers=[].slice.call(g.querySelectorAll(".glayer"));
     var STEPS=[
-      {emoji:"🔍", color:"#1E3A2E", label:"Estudiamos",   badge:"Estudiamos",            title:"Estudiamos", text:"Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso."},
-      {emoji:"💰", color:"#A9832B", label:"Invertimos",   badge:"Compramos o invertimos",title:"Compramos o invertimos", text:"Le compramos ahora, o invertimos y desarrollamos su terreno junto a usted."},
-      {emoji:"📜", color:"#ff690f", label:"Aprobamos",    badge:"Aprobamos",             title:"Aprobamos", text:"Conseguimos los permisos y las aprobaciones. Los trámites son nuestros."},
-      {emoji:"📣", color:"#687021", label:"Difundimos",   badge:"Damos a conocer",       title:"Damos a conocer", text:"Armamos el plan de venta para llegar a quienes sí compran."},
-      {emoji:"📋", color:"#2a6f57", label:"Controlamos",  badge:"Controlamos",           title:"Controlamos", text:"Supervisamos la obra y los plazos de principio a fin."},
-      {emoji:"🏗️", color:"#c24700", label:"En marcha",    badge:"Ponemos en marcha",     title:"Ponemos en marcha", text:"Arrancan las obras, y no empiezan hasta que la inversión está asegurada."},
-      {emoji:"🔑", color:"#35543f", label:"Entregamos",   badge:"Entregamos",            title:"Entregamos", text:"Su terreno queda desarrollado: servicios y urbanización listos."},
-      {emoji:"📝", color:"#A9832B", label:"Escrituramos", badge:"Escrituramos",          title:"Escrituramos", text:"Usted firma la escritura, con lo legal y bancario resuelto."}
+      {gray:1,   layers:0, badge:"Estudiamos",            title:"Estudiamos", text:"Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso."},
+      {gray:.88, layers:0, badge:"Compramos o invertimos",title:"Compramos o invertimos", text:"Le compramos ahora, o invertimos y desarrollamos su terreno junto a usted."},
+      {gray:.74, layers:1, badge:"Aprobamos",             title:"Aprobamos", text:"Conseguimos los permisos y las aprobaciones. Los trámites son nuestros."},
+      {gray:.6,  layers:1, badge:"Damos a conocer",       title:"Damos a conocer", text:"Armamos el plan de venta para llegar a quienes sí compran."},
+      {gray:.45, layers:2, badge:"Controlamos",           title:"Controlamos", text:"Supervisamos la obra y los plazos de principio a fin."},
+      {gray:.3,  layers:3, badge:"Ponemos en marcha",     title:"Ponemos en marcha", text:"Arrancan las obras, y no empiezan hasta que la inversión está asegurada."},
+      {gray:.15, layers:4, badge:"Entregamos",            title:"Entregamos", text:"Su terreno queda desarrollado: servicios y urbanización listos."},
+      {gray:0,   layers:4, badge:"Escrituramos",          title:"Escrituramos", text:"Usted firma la escritura, con lo legal y bancario resuelto."}
     ];
-    var N=STEPS.length, W=1000, H=190, x0=64, x1=936, cur=0;
-    var pts=STEPS.map(function(s,i){ return {x:x0+(x1-x0)*i/(N-1), y:92+40*Math.sin(i*Math.PI/2)}; });
-    var span=(x1-x0)/(N-1), ns="http://www.w3.org/2000/svg";
-    var d="M"+pts[0].x+","+pts[0].y;
-    for(var k=1;k<N;k++){ var p0=pts[k-1],p1=pts[k]; d+=" C"+(p0.x+span/2)+","+p0.y+" "+(p1.x-span/2)+","+p1.y+" "+p1.x+","+p1.y; }
-    var svg=document.createElementNS(ns,"svg"); svg.setAttribute("viewBox","0 0 "+W+" "+H); svg.setAttribute("class","cater__svg");
-    var base=document.createElementNS(ns,"path"); base.setAttribute("d",d); base.setAttribute("class","cater__base");
-    var prog=document.createElementNS(ns,"path"); prog.setAttribute("d",d); prog.setAttribute("class","cater__prog");
-    svg.appendChild(base); svg.appendChild(prog); cater.appendChild(svg);
-    var L=prog.getTotalLength(); prog.style.strokeDasharray=L; prog.style.strokeDashoffset=L;
-    var nodes=STEPS.map(function(s,i){
-      var b=document.createElement("button"); b.type="button"; b.className="cbead";
-      b.setAttribute("aria-label","Paso "+(i+1)+": "+s.badge);
-      b.style.left=(pts[i].x/W*100)+"%"; b.style.top=(pts[i].y/H*100)+"%";
-      b.innerHTML='<span class="cbead__dot"></span><span class="cbead__lbl">'+s.label+'</span>';
-      b.addEventListener("click", function(){ g.classList.add("is-touched"); set(i); });
-      cater.appendChild(b); return b;
-    });
+    var cur=0;
     function set(i){
-      i=Math.max(0,Math.min(N-1,i)); cur=i; var s=STEPS[i];
+      i=Math.max(0,Math.min(STEPS.length-1,i)); cur=i; var s=STEPS[i];
       nodes.forEach(function(n,idx){ n.classList.toggle("is-active",idx===i); n.classList.toggle("is-done",idx<i); });
-      prog.style.strokeDashoffset = L*(1 - i/(N-1));
-      if(glowEl) glowEl.style.setProperty("--c", s.color);
-      if(emojiEl){ emojiEl.textContent=s.emoji; emojiEl.style.animation="none"; void emojiEl.offsetWidth; emojiEl.style.animation=""; }
+      layers.forEach(function(l){ l.classList.toggle("is-on", parseInt(l.getAttribute("data-layer"),10)<=s.layers); });
+      if(img) img.style.filter="grayscale("+s.gray+") brightness("+(0.9+0.1*(1-s.gray)).toFixed(2)+")";
+      if(fill) fill.style.width=(i/(STEPS.length-1)*100)+"%";
       if(titleEl) titleEl.textContent=s.title;
       if(textEl) textEl.textContent=s.text;
       if(idxEl) idxEl.textContent=(i+1);
       if(badgeEl) badgeEl.textContent=s.badge;
     }
-    g.setAttribute("tabindex","0");
+    nodes.forEach(function(n){ n.addEventListener("click", function(){ g.classList.add("is-touched"); set(parseInt(n.getAttribute("data-grow-node"),10)); }); });
     g.addEventListener("keydown", function(e){
       if(e.key==="ArrowRight"){ e.preventDefault(); g.classList.add("is-touched"); set(cur+1); }
       else if(e.key==="ArrowLeft"){ e.preventDefault(); g.classList.add("is-touched"); set(cur-1); }

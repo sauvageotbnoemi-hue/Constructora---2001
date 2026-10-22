@@ -629,27 +629,6 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 /* Línea de plazo bajo el resultado del ejemplo */
 .formula__when{display:block;font-size:.72rem;opacity:.85;margin-top:.35rem;color:#ffd9bd}
 
-/* ---- Proceso: oruga curva + imagen 3D por paso ---- */
-.vt__stage--proc{background:radial-gradient(130% 112% at 50% 12%,#23392e,#0c1f17);display:flex;align-items:center;justify-content:center;min-height:320px;overflow:hidden}
-.scene3d__glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);z-index:1;width:58%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--c,#1E3A2E),transparent 66%);opacity:.6;filter:blur(8px);transition:background .5s var(--ease)}
-.scene3d__art{position:relative;z-index:2;animation:artFloat 5s ease-in-out infinite}
-@keyframes artFloat{0%,100%{transform:translateY(-7px)}50%{transform:translateY(7px)}}
-.scene3d__emoji{display:inline-block;font-size:clamp(80px,13vw,134px);line-height:1;filter:drop-shadow(0 16px 16px rgba(0,0,0,.5));animation:artPop .55s var(--ease)}
-@keyframes artPop{0%{transform:scale(.4) rotate(-10deg);opacity:0}60%{transform:scale(1.12) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-
-.cater{position:relative;grid-area:timeline;width:100%;margin-top:1.3rem}
-.cater__svg{width:100%;height:auto;display:block;overflow:visible}
-.cater__base{fill:none;stroke:rgba(246,244,241,.16);stroke-width:5;stroke-linecap:round}
-.cater__prog{fill:none;stroke:var(--naranja);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset .6s var(--ease)}
-.cbead{position:absolute;transform:translate(-50%,-50%);background:none;border:0;cursor:pointer;padding:7px;z-index:2}
-.cbead__dot{display:block;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff,#b9b3a6 76%);box-shadow:0 5px 12px -3px rgba(0,0,0,.5);transition:transform .35s var(--ease),background .35s,box-shadow .35s}
-.cbead.is-done .cbead__dot,.cbead.is-active .cbead__dot{background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.8),var(--naranja) 72%)}
-.cbead.is-active .cbead__dot{transform:scale(1.55);box-shadow:0 7px 18px -4px rgba(255,105,15,.7)}
-.cbead__lbl{position:absolute;left:50%;top:calc(100% + 1px);transform:translateX(-50%);white-space:nowrap;font-family:var(--display);font-weight:700;font-size:.68rem;color:rgba(246,244,241,.55);transition:color .3s}
-.cbead.is-active .cbead__lbl{color:var(--crema)}
-@media(max-width:700px){.cbead__lbl{display:none}}
-@media(prefers-reduced-motion:reduce){.scene3d__art,.scene3d__emoji{animation:none}.cater__prog{transition:none}}
-
 @media (prefers-reduced-motion:reduce){
   .hero__scroll svg,.ba__handle svg,.pin__btn::before,.hero__bg img,.grow__guide span{animation:none}
   .hero__panels{display:none}
