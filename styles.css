@@ -8,13 +8,18 @@
   --oliva:#687021; --mostaza:#A9832B; --naranja:#ff690f; --naranja-osc:#c24700;
   --tinta:#20241f; --muted:#727468;
   --line:rgba(32,36,31,.14); --line-light:rgba(246,244,241,.18);
-  --display:'Hanken Grotesk',system-ui,sans-serif; --body:'Inter',system-ui,sans-serif;
+  --display:'Fraunces',Georgia,'Times New Roman',serif; --body:'Inter',system-ui,sans-serif;
+  --ui:'Inter',system-ui,sans-serif;
   --ease:cubic-bezier(.5,.15,.15,1);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{overflow-x:clip;scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-body{font-family:var(--body);background:var(--crema);color:var(--tinta);line-height:1.6;-webkit-font-smoothing:antialiased}
+body{font-family:var(--body);background:var(--crema);color:var(--tinta);line-height:1.6;-webkit-font-smoothing:antialiased;font-optical-sizing:auto}
+/* Títulos serif: cuidar el espaciado óptico */
+.h2,.hero__title,.h3,.camino__title,.pstep__t,.ruta__title,.grow__ctitle,.statement p,.pledge p,.somos__line,.equipo__quote{font-optical-sizing:auto}
+/* UI (botones, nav, chips) en sans para un acabado profesional */
+.btn,.nav__links a,.nav__cta,.hero__cta-btn,.hero__cta-arrow,.wfab,.camino__badge,.ruta__badge,.vt__tag,.kicker,.chapter__eyebrow,.gana__lbl,.vt__eyebrow,.ruta__for,.sistema__n,.pstep__n,.pillar__n,.cbead__lbl,.gnode__lbl,.vt__value-lbl,.formula__sub{font-family:var(--ui)}
 body.no-scroll{overflow:hidden}
 img{max-width:100%;display:block}
 a{color:inherit;text-decoration:none}
@@ -634,3 +639,16 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
   .hero__panels{display:none}
   [data-fade],.hero__title .line>span{animation:none;opacity:1;transform:none}
 }
+
+/* ============================================================
+   TIPOGRAFÍA: títulos serif (Fraunces) · UI en sans (Inter)
+   (al final del archivo para ganar en especificidad)
+   ============================================================ */
+.btn,.nav__cta,.hero__cta-btn,.hero__cta-arrow,.wfab,
+.camino__badge,.camino__name,.ruta__badge,.ruta__for,.ruta__toggle,
+.vt__tag,.vt__eyebrow,.vt__value-lbl,.gnode__lbl,.cbead__lbl,
+.kicker,.chapter__eyebrow,.gana__lbl,.sistema__n,.pstep__n,.pillar__n,
+.formula__sub,.formula__when,.sistema__lead,.quiz__opt,.compare__label,
+.nav__burger,.foot__meta,.foot__legal,.testi__name,.testi__place{font-family:var(--ui)}
+/* Números grandes: sans con cifras tabulares para legibilidad */
+.formula__tag,.grow__vnum,.calc__num,.calc__out{font-family:var(--ui);font-variant-numeric:tabular-nums}
