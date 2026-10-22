@@ -629,6 +629,23 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 /* Línea de plazo bajo el resultado del ejemplo */
 .formula__when{display:block;font-size:.72rem;opacity:.85;margin-top:.35rem;color:#ffd9bd}
 
+/* ---- Burbuja 3D del proceso (un ícono por paso) ---- */
+.vt__stage--proc .grow__img{filter:grayscale(.5) brightness(.72)}
+.vt__dim{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(58% 58% at 50% 46%,rgba(13,34,26,.18),rgba(8,16,12,.82))}
+.vt__orb{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);z-index:4;width:clamp(118px,19vw,172px);height:clamp(118px,19vw,172px)}
+.vt__orb.is-pop{animation:orbPop .55s var(--ease)}
+@keyframes orbPop{0%{transform:translate(-50%,-50%) scale(.68)}55%{transform:translate(-50%,-50%) scale(1.07)}100%{transform:translate(-50%,-50%) scale(1)}}
+.vt__orb-face{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 34% 27%,rgba(255,255,255,.62),var(--orb,#1E3A2E) 70%);box-shadow:inset 0 -16px 32px rgba(0,0,0,.42),inset 0 12px 26px rgba(255,255,255,.3),0 26px 46px -14px rgba(0,0,0,.65);animation:orbFloat 5.5s ease-in-out infinite}
+@keyframes orbFloat{0%,100%{transform:translateY(-5px)}50%{transform:translateY(5px)}}
+.vt__orb-ic{display:flex;animation:iconPop .5s var(--ease)}
+.vt__orb-ic svg{width:clamp(48px,8vw,68px);height:auto;fill:none;stroke:var(--crema);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+@keyframes iconPop{0%{transform:scale(.3) rotate(-14deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+.vt__orb-shadow{position:absolute;left:50%;bottom:13%;transform:translateX(-50%);z-index:3;width:clamp(92px,14vw,132px);height:22px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),transparent 70%);animation:orbShadow 5.5s ease-in-out infinite}
+@keyframes orbShadow{0%,100%{transform:translateX(-50%) scale(1);opacity:.5}50%{transform:translateX(-50%) scale(.84);opacity:.32}}
+@media(prefers-reduced-motion:reduce){
+  .vt__orb-face,.vt__orb-shadow,.vt__orb.is-pop,.vt__orb-ic{animation:none}
+}
+
 @media (prefers-reduced-motion:reduce){
   .hero__scroll svg,.ba__handle svg,.pin__btn::before,.hero__bg img,.grow__guide span{animation:none}
   .hero__panels{display:none}
