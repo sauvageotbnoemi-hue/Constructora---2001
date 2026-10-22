@@ -635,13 +635,16 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
   [data-fade],.hero__title .line>span{animation:none;opacity:1;transform:none}
 }
 
-/* ---- Ocho pasos (editorial, grilla tipo subdivisión) ---- */
-.edproc{background:var(--crema);padding:0 0 clamp(4rem,9vw,7rem)}
-.edgrid{list-style:none;max-width:1040px;margin:clamp(1rem,2.5vw,1.8rem) auto 0;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:6px;overflow:hidden}
-.edcell{background:var(--crema);padding:1.5rem 1.3rem;display:flex;flex-direction:column;gap:.45rem;transition:background .3s var(--ease)}
-.edcell:hover{background:#fff}
+/* ---- Ocho pasos (editorial sobre la imagen del terreno) ---- */
+.edproc{position:relative;background:var(--verde-deep);padding:clamp(3.5rem,8vw,6rem) 0;overflow:hidden}
+.edproc::before{content:"";position:absolute;inset:0;background:url("assets/img/hero-parcela.jpg") center/cover;opacity:.5}
+.edproc::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,34,26,.7),rgba(13,34,26,.82))}
+.edproc .wrap{position:relative;z-index:1}
+.edgrid{list-style:none;max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:rgba(246,244,241,.16);border:1px solid rgba(246,244,241,.16);border-radius:8px;overflow:hidden;box-shadow:0 40px 90px -42px rgba(0,0,0,.65)}
+.edcell{background:rgba(13,34,26,.5);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);padding:1.5rem 1.3rem;display:flex;flex-direction:column;gap:.45rem;transition:background .3s var(--ease)}
+.edcell:hover{background:rgba(13,34,26,.28)}
 .edcell__n{font-family:var(--display);font-weight:800;font-size:.85rem;letter-spacing:.12em;color:var(--naranja)}
-.edcell__t{font-family:var(--display);font-weight:800;font-size:clamp(1.15rem,1.9vw,1.3rem);line-height:1.05;color:var(--verde)}
-.edcell__p{font-size:.9rem;color:#4a4d44;line-height:1.5}
+.edcell__t{font-family:var(--display);font-weight:800;font-size:clamp(1.15rem,1.9vw,1.3rem);line-height:1.05;color:var(--crema)}
+.edcell__p{font-size:.9rem;color:rgba(246,244,241,.82);line-height:1.5}
 @media(max-width:860px){.edgrid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:480px){.edgrid{grid-template-columns:1fr}}
