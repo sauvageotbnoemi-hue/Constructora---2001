@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261022B" />
+<link rel="stylesheet" href="styles.css?v=20261022C" />
 <link rel="icon" href="assets/logo/isotipo-blanco.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -91,10 +91,8 @@
     <div class="wrap">
       <div class="vt vt--proc" data-grow data-reveal>
         <figure class="vt__stage vt__stage--proc" data-tilt>
-          <img class="grow__img" data-grow-img src="assets/img/hero-parcela.jpg" alt="Un terreno visto desde arriba" />
-          <span class="vt__dim" aria-hidden="true"></span>
-          <span class="vt__orb-shadow" aria-hidden="true"></span>
-          <div class="vt__orb" data-grow-orb aria-hidden="true"><div class="vt__orb-face"><span class="vt__orb-ic" data-grow-icon></span></div></div>
+          <span class="scene3d__glow" data-grow-glow aria-hidden="true"></span>
+          <span class="scene3d__art"><span class="scene3d__emoji" data-grow-emoji>🔍</span></span>
           <span class="vt__tag vt__tag--leaf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg>Desarrollo de suelo</span>
           <span class="vt__tag vt__tag--stage" data-grow-idx-badge>Estudiamos</span>
         </figure>
@@ -103,20 +101,10 @@
           <span class="vt__eyebrow">Paso <b data-grow-idx>1</b> de 8</span>
           <h4 class="grow__ctitle" data-grow-title>Estudiamos</h4>
           <p class="grow__ctext" data-grow-text>Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso.</p>
-          <p class="vt__hint">Toque cada paso para ver cómo avanza su terreno →</p>
+          <p class="vt__hint">Toque cada tramo de la oruga →</p>
         </div>
 
-        <div class="grow__track vt__timeline" data-grow-track role="group" aria-label="Los pasos de nuestro trabajo">
-          <div class="grow__rail"><span class="grow__fill" data-grow-fill></span></div>
-          <button class="gnode is-active" data-grow-node="0" type="button" aria-label="Paso 1: Estudiamos"><span class="gnode__dot"></span><span class="gnode__lbl">Estudiamos</span></button>
-          <button class="gnode" data-grow-node="1" type="button" aria-label="Paso 2: Compramos o invertimos"><span class="gnode__dot"></span><span class="gnode__lbl">Invertimos</span></button>
-          <button class="gnode" data-grow-node="2" type="button" aria-label="Paso 3: Aprobamos"><span class="gnode__dot"></span><span class="gnode__lbl">Aprobamos</span></button>
-          <button class="gnode" data-grow-node="3" type="button" aria-label="Paso 4: Damos a conocer"><span class="gnode__dot"></span><span class="gnode__lbl">Difundimos</span></button>
-          <button class="gnode" data-grow-node="4" type="button" aria-label="Paso 5: Controlamos"><span class="gnode__dot"></span><span class="gnode__lbl">Controlamos</span></button>
-          <button class="gnode" data-grow-node="5" type="button" aria-label="Paso 6: Ponemos en marcha"><span class="gnode__dot"></span><span class="gnode__lbl">En marcha</span></button>
-          <button class="gnode" data-grow-node="6" type="button" aria-label="Paso 7: Entregamos"><span class="gnode__dot"></span><span class="gnode__lbl">Entregamos</span></button>
-          <button class="gnode" data-grow-node="7" type="button" aria-label="Paso 8: Escrituramos"><span class="gnode__dot"></span><span class="gnode__lbl">Escrituramos</span></button>
-        </div>
+        <div class="cater" data-cater role="group" aria-label="Los pasos de nuestro trabajo"></div>
       </div>
     </div>
   </section>
@@ -321,6 +309,6 @@
   <span>Hablemos</span>
 </a>
 
-<script defer src="main.js?v=20261022B"></script>
+<script defer src="main.js?v=20261022C"></script>
 </body>
 </html>

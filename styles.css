@@ -629,22 +629,26 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 /* Línea de plazo bajo el resultado del ejemplo */
 .formula__when{display:block;font-size:.72rem;opacity:.85;margin-top:.35rem;color:#ffd9bd}
 
-/* ---- Burbuja 3D del proceso (un ícono por paso) ---- */
-.vt__stage--proc .grow__img{filter:grayscale(.5) brightness(.72)}
-.vt__dim{position:absolute;inset:0;z-index:2;pointer-events:none;background:radial-gradient(58% 58% at 50% 46%,rgba(13,34,26,.18),rgba(8,16,12,.82))}
-.vt__orb{position:absolute;left:50%;top:47%;transform:translate(-50%,-50%);z-index:4;width:clamp(118px,19vw,172px);height:clamp(118px,19vw,172px)}
-.vt__orb.is-pop{animation:orbPop .55s var(--ease)}
-@keyframes orbPop{0%{transform:translate(-50%,-50%) scale(.68)}55%{transform:translate(-50%,-50%) scale(1.07)}100%{transform:translate(-50%,-50%) scale(1)}}
-.vt__orb-face{width:100%;height:100%;border-radius:50%;display:flex;align-items:center;justify-content:center;background:radial-gradient(circle at 34% 27%,rgba(255,255,255,.62),var(--orb,#1E3A2E) 70%);box-shadow:inset 0 -16px 32px rgba(0,0,0,.42),inset 0 12px 26px rgba(255,255,255,.3),0 26px 46px -14px rgba(0,0,0,.65);animation:orbFloat 5.5s ease-in-out infinite}
-@keyframes orbFloat{0%,100%{transform:translateY(-5px)}50%{transform:translateY(5px)}}
-.vt__orb-ic{display:flex;animation:iconPop .5s var(--ease)}
-.vt__orb-ic svg{width:clamp(48px,8vw,68px);height:auto;fill:none;stroke:var(--crema);stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
-@keyframes iconPop{0%{transform:scale(.3) rotate(-14deg);opacity:0}60%{transform:scale(1.14) rotate(4deg);opacity:1}100%{transform:scale(1) rotate(0)}}
-.vt__orb-shadow{position:absolute;left:50%;bottom:13%;transform:translateX(-50%);z-index:3;width:clamp(92px,14vw,132px);height:22px;border-radius:50%;background:radial-gradient(ellipse at center,rgba(0,0,0,.55),transparent 70%);animation:orbShadow 5.5s ease-in-out infinite}
-@keyframes orbShadow{0%,100%{transform:translateX(-50%) scale(1);opacity:.5}50%{transform:translateX(-50%) scale(.84);opacity:.32}}
-@media(prefers-reduced-motion:reduce){
-  .vt__orb-face,.vt__orb-shadow,.vt__orb.is-pop,.vt__orb-ic{animation:none}
-}
+/* ---- Proceso: oruga curva + imagen 3D por paso ---- */
+.vt__stage--proc{background:radial-gradient(130% 112% at 50% 12%,#23392e,#0c1f17);display:flex;align-items:center;justify-content:center;min-height:320px;overflow:hidden}
+.scene3d__glow{position:absolute;top:46%;left:50%;transform:translate(-50%,-50%);z-index:1;width:58%;aspect-ratio:1;border-radius:50%;background:radial-gradient(circle,var(--c,#1E3A2E),transparent 66%);opacity:.6;filter:blur(8px);transition:background .5s var(--ease)}
+.scene3d__art{position:relative;z-index:2;animation:artFloat 5s ease-in-out infinite}
+@keyframes artFloat{0%,100%{transform:translateY(-7px)}50%{transform:translateY(7px)}}
+.scene3d__emoji{display:inline-block;font-size:clamp(80px,13vw,134px);line-height:1;filter:drop-shadow(0 16px 16px rgba(0,0,0,.5));animation:artPop .55s var(--ease)}
+@keyframes artPop{0%{transform:scale(.4) rotate(-10deg);opacity:0}60%{transform:scale(1.12) rotate(3deg);opacity:1}100%{transform:scale(1) rotate(0)}}
+
+.cater{position:relative;grid-area:timeline;width:100%;margin-top:1.3rem}
+.cater__svg{width:100%;height:auto;display:block;overflow:visible}
+.cater__base{fill:none;stroke:rgba(246,244,241,.16);stroke-width:5;stroke-linecap:round}
+.cater__prog{fill:none;stroke:var(--naranja);stroke-width:5;stroke-linecap:round;transition:stroke-dashoffset .6s var(--ease)}
+.cbead{position:absolute;transform:translate(-50%,-50%);background:none;border:0;cursor:pointer;padding:7px;z-index:2}
+.cbead__dot{display:block;width:22px;height:22px;border-radius:50%;background:radial-gradient(circle at 34% 28%,#fff,#b9b3a6 76%);box-shadow:0 5px 12px -3px rgba(0,0,0,.5);transition:transform .35s var(--ease),background .35s,box-shadow .35s}
+.cbead.is-done .cbead__dot,.cbead.is-active .cbead__dot{background:radial-gradient(circle at 34% 28%,rgba(255,255,255,.8),var(--naranja) 72%)}
+.cbead.is-active .cbead__dot{transform:scale(1.55);box-shadow:0 7px 18px -4px rgba(255,105,15,.7)}
+.cbead__lbl{position:absolute;left:50%;top:calc(100% + 1px);transform:translateX(-50%);white-space:nowrap;font-family:var(--display);font-weight:700;font-size:.68rem;color:rgba(246,244,241,.55);transition:color .3s}
+.cbead.is-active .cbead__lbl{color:var(--crema)}
+@media(max-width:700px){.cbead__lbl{display:none}}
+@media(prefers-reduced-motion:reduce){.scene3d__art,.scene3d__emoji{animation:none}.cater__prog{transition:none}}
 
 @media (prefers-reduced-motion:reduce){
   .hero__scroll svg,.ba__handle svg,.pin__btn::before,.hero__bg img,.grow__guide span{animation:none}

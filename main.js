@@ -87,48 +87,54 @@
     marks.forEach(function(m){ io.observe(m); });
   }
 
-  /* ---------- Visor del proceso: 8 pasos con burbuja 3D ---------- */
-  var GICONS={
-    lupa:'<svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>',
-    monedas:'<svg viewBox="0 0 24 24"><ellipse cx="12" cy="6.5" rx="7" ry="3"/><path d="M5 6.5v5.5c0 1.66 3.13 3 7 3s7-1.34 7-3V6.5"/><path d="M5 12v5.5c0 1.66 3.13 3 7 3s7-1.34 7-3V12"/></svg>',
-    sello:'<svg viewBox="0 0 24 24"><circle cx="12" cy="9" r="6"/><path d="M9.3 9l1.9 1.9L15 7.2"/><path d="M8.6 14.3L7 21l5-2.2L17 21l-1.6-6.7"/></svg>',
-    megafono:'<svg viewBox="0 0 24 24"><path d="M4 9.5v5h3.2L15 19V5L7.2 9.5H4z"/><path d="M18 9.2a4.5 4.5 0 0 1 0 5.6"/></svg>',
-    ojo:'<svg viewBox="0 0 24 24"><path d="M2 12s3.8-6.2 10-6.2S22 12 22 12s-3.8 6.2-10 6.2S2 12 2 12z"/><circle cx="12" cy="12" r="2.6"/></svg>',
-    cohete:'<svg viewBox="0 0 24 24"><path d="M12 2.5c3 2.2 4.6 5.3 4.6 9.2L15 19H9l-1.6-7.3C7.4 7.8 9 4.7 12 2.5z"/><circle cx="12" cy="9.5" r="1.7"/><path d="M9 18l-2.3 3.5M15 18l2.3 3.5"/></svg>',
-    llave:'<svg viewBox="0 0 24 24"><circle cx="8" cy="12" r="4.2"/><path d="M12 12h9M18 12v3.2M21 12v4"/></svg>',
-    escritura:'<svg viewBox="0 0 24 24"><path d="M7 3.2h6.5L18 7.6V13"/><path d="M13.5 3.2v4.4H18"/><path d="M5.5 20.8l8.2-8.2 2.4 2.4-8.2 8.2H5.5z"/></svg>'
-  };
+  /* ---------- Visor del proceso: oruga curva + imagen 3D por paso ---------- */
   function initGrow(){
     var g=document.querySelector("[data-grow]"); if(!g) return;
-    var img=g.querySelector("[data-grow-img]"), fill=g.querySelector("[data-grow-fill]"),
-        titleEl=g.querySelector("[data-grow-title]"), textEl=g.querySelector("[data-grow-text]"),
+    var titleEl=g.querySelector("[data-grow-title]"), textEl=g.querySelector("[data-grow-text]"),
         idxEl=g.querySelector("[data-grow-idx]"), badgeEl=g.querySelector("[data-grow-idx-badge]"),
-        orb=g.querySelector("[data-grow-orb]"), iconEl=g.querySelector("[data-grow-icon]");
-    var nodes=[].slice.call(g.querySelectorAll(".gnode"));
+        emojiEl=g.querySelector("[data-grow-emoji]"), artEl=g.querySelector(".scene3d__art"),
+        glowEl=g.querySelector("[data-grow-glow]"), cater=g.querySelector("[data-cater]");
+    if(!cater) return;
     var STEPS=[
-      {gray:1,   color:"#1E3A2E", icon:"lupa",      badge:"Estudiamos",            title:"Estudiamos", text:"Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso."},
-      {gray:.88, color:"#A9832B", icon:"monedas",   badge:"Compramos o invertimos",title:"Compramos o invertimos", text:"Le compramos ahora, o invertimos y desarrollamos su terreno junto a usted."},
-      {gray:.74, color:"#ff690f", icon:"sello",     badge:"Aprobamos",             title:"Aprobamos", text:"Conseguimos los permisos y las aprobaciones. Los trámites son nuestros."},
-      {gray:.6,  color:"#687021", icon:"megafono",  badge:"Damos a conocer",       title:"Damos a conocer", text:"Armamos el plan de venta para llegar a quienes sí compran."},
-      {gray:.45, color:"#2a6f57", icon:"ojo",       badge:"Controlamos",           title:"Controlamos", text:"Supervisamos la obra y los plazos de principio a fin."},
-      {gray:.3,  color:"#c24700", icon:"cohete",    badge:"Ponemos en marcha",     title:"Ponemos en marcha", text:"Arrancan las obras, y no empiezan hasta que la inversión está asegurada."},
-      {gray:.15, color:"#35543f", icon:"llave",     badge:"Entregamos",            title:"Entregamos", text:"Su terreno queda desarrollado: servicios y urbanización listos."},
-      {gray:0,   color:"#A9832B", icon:"escritura", badge:"Escrituramos",          title:"Escrituramos", text:"Usted firma la escritura, con lo legal y bancario resuelto."}
+      {emoji:"🔍", color:"#1E3A2E", label:"Estudiamos",   badge:"Estudiamos",            title:"Estudiamos", text:"Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso."},
+      {emoji:"💰", color:"#A9832B", label:"Invertimos",   badge:"Compramos o invertimos",title:"Compramos o invertimos", text:"Le compramos ahora, o invertimos y desarrollamos su terreno junto a usted."},
+      {emoji:"📜", color:"#ff690f", label:"Aprobamos",    badge:"Aprobamos",             title:"Aprobamos", text:"Conseguimos los permisos y las aprobaciones. Los trámites son nuestros."},
+      {emoji:"📣", color:"#687021", label:"Difundimos",   badge:"Damos a conocer",       title:"Damos a conocer", text:"Armamos el plan de venta para llegar a quienes sí compran."},
+      {emoji:"📋", color:"#2a6f57", label:"Controlamos",  badge:"Controlamos",           title:"Controlamos", text:"Supervisamos la obra y los plazos de principio a fin."},
+      {emoji:"🏗️", color:"#c24700", label:"En marcha",    badge:"Ponemos en marcha",     title:"Ponemos en marcha", text:"Arrancan las obras, y no empiezan hasta que la inversión está asegurada."},
+      {emoji:"🔑", color:"#35543f", label:"Entregamos",   badge:"Entregamos",            title:"Entregamos", text:"Su terreno queda desarrollado: servicios y urbanización listos."},
+      {emoji:"📝", color:"#A9832B", label:"Escrituramos", badge:"Escrituramos",          title:"Escrituramos", text:"Usted firma la escritura, con lo legal y bancario resuelto."}
     ];
-    var cur=0;
+    var N=STEPS.length, W=1000, H=190, x0=64, x1=936, cur=0;
+    var pts=STEPS.map(function(s,i){ return {x:x0+(x1-x0)*i/(N-1), y:92+40*Math.sin(i*Math.PI/2)}; });
+    var span=(x1-x0)/(N-1), ns="http://www.w3.org/2000/svg";
+    var d="M"+pts[0].x+","+pts[0].y;
+    for(var k=1;k<N;k++){ var p0=pts[k-1],p1=pts[k]; d+=" C"+(p0.x+span/2)+","+p0.y+" "+(p1.x-span/2)+","+p1.y+" "+p1.x+","+p1.y; }
+    var svg=document.createElementNS(ns,"svg"); svg.setAttribute("viewBox","0 0 "+W+" "+H); svg.setAttribute("class","cater__svg");
+    var base=document.createElementNS(ns,"path"); base.setAttribute("d",d); base.setAttribute("class","cater__base");
+    var prog=document.createElementNS(ns,"path"); prog.setAttribute("d",d); prog.setAttribute("class","cater__prog");
+    svg.appendChild(base); svg.appendChild(prog); cater.appendChild(svg);
+    var L=prog.getTotalLength(); prog.style.strokeDasharray=L; prog.style.strokeDashoffset=L;
+    var nodes=STEPS.map(function(s,i){
+      var b=document.createElement("button"); b.type="button"; b.className="cbead";
+      b.setAttribute("aria-label","Paso "+(i+1)+": "+s.badge);
+      b.style.left=(pts[i].x/W*100)+"%"; b.style.top=(pts[i].y/H*100)+"%";
+      b.innerHTML='<span class="cbead__dot"></span><span class="cbead__lbl">'+s.label+'</span>';
+      b.addEventListener("click", function(){ g.classList.add("is-touched"); set(i); });
+      cater.appendChild(b); return b;
+    });
     function set(i){
-      i=Math.max(0,Math.min(STEPS.length-1,i)); cur=i; var s=STEPS[i];
+      i=Math.max(0,Math.min(N-1,i)); cur=i; var s=STEPS[i];
       nodes.forEach(function(n,idx){ n.classList.toggle("is-active",idx===i); n.classList.toggle("is-done",idx<i); });
-      if(img) img.style.filter="grayscale("+s.gray+") brightness("+(0.72+0.18*(1-s.gray)).toFixed(2)+")";
-      if(fill) fill.style.width=(i/(STEPS.length-1)*100)+"%";
-      if(orb){ orb.style.setProperty("--orb", s.color); orb.classList.remove("is-pop"); void orb.offsetWidth; orb.classList.add("is-pop"); }
-      if(iconEl){ iconEl.innerHTML=GICONS[s.icon]||""; iconEl.style.animation="none"; void iconEl.offsetWidth; iconEl.style.animation=""; }
+      prog.style.strokeDashoffset = L*(1 - i/(N-1));
+      if(glowEl) glowEl.style.setProperty("--c", s.color);
+      if(emojiEl){ emojiEl.textContent=s.emoji; emojiEl.style.animation="none"; void emojiEl.offsetWidth; emojiEl.style.animation=""; }
       if(titleEl) titleEl.textContent=s.title;
       if(textEl) textEl.textContent=s.text;
       if(idxEl) idxEl.textContent=(i+1);
       if(badgeEl) badgeEl.textContent=s.badge;
     }
-    nodes.forEach(function(n){ n.addEventListener("click", function(){ g.classList.add("is-touched"); set(parseInt(n.getAttribute("data-grow-node"),10)); }); });
+    g.setAttribute("tabindex","0");
     g.addEventListener("keydown", function(e){
       if(e.key==="ArrowRight"){ e.preventDefault(); g.classList.add("is-touched"); set(cur+1); }
       else if(e.key==="ArrowLeft"){ e.preventDefault(); g.classList.add("is-touched"); set(cur-1); }
