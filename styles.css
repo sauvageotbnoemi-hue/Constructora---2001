@@ -227,7 +227,7 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 @media(max-width:820px){.cta__wrap{grid-template-columns:1fr;gap:2.2rem;max-width:560px}.form__row{grid-template-columns:1fr}}
 
 /* FOOTER */
-.foot{background:var(--verde-2);color:var(--crema);padding-top:clamp(4rem,8vw,6rem)}
+.foot{background-color:var(--verde-2);background-image:repeating-linear-gradient(90deg,rgba(246,244,241,.055) 0 1px,transparent 1px 20%);color:var(--crema);padding-top:clamp(4rem,8vw,6rem)}
 .foot__wrap{display:flex;justify-content:space-between;gap:2.5rem;flex-wrap:wrap;padding-bottom:3rem;border-bottom:1px solid var(--line-light)}
 .foot__brand img{height:32px;margin-bottom:1rem}
 .foot__brand p{opacity:.75;max-width:26ch}
