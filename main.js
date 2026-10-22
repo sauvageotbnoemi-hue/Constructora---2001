@@ -87,49 +87,41 @@
     marks.forEach(function(m){ io.observe(m); });
   }
 
-  /* ---------- Ruta de valor (visor de 5 etapas) ---------- */
+  /* ---------- Ruta de valor (visor del proceso, 8 pasos) ---------- */
   function initGrow(){
     var g=document.querySelector("[data-grow]"); if(!g) return;
     var img=g.querySelector("[data-grow-img]"), fill=g.querySelector("[data-grow-fill]"),
-        numEl=g.querySelector("[data-grow-num]"), titleEl=g.querySelector("[data-grow-title]"), textEl=g.querySelector("[data-grow-text]"),
+        titleEl=g.querySelector("[data-grow-title]"), textEl=g.querySelector("[data-grow-text]"),
         idxEl=g.querySelector("[data-grow-idx]"), badgeEl=g.querySelector("[data-grow-idx-badge]");
     var nodes=[].slice.call(g.querySelectorAll(".gnode")), layers=[].slice.call(g.querySelectorAll(".glayer"));
     var STEPS=[
-      {v:1000,gray:1,  badge:"En crudo",    title:"Terreno en crudo", text:"Hoy su terreno se vende como una hoja en blanco: sin accesos, sin servicios y sin papeles al día. Por eso le ofrecen tan poco."},
-      {v:1150,gray:.75,badge:"Accesos",     title:"Accesos y caminos", text:"Definimos y legalizamos los caminos y las servidumbres de paso. Cada lote necesita por dónde entrar y salir."},
-      {v:1300,gray:.5, badge:"Agua y luz",  title:"Agua y luz", text:"Gestionamos las factibilidades de agua y electricidad. Sin servicios no se puede construir —ni vender bien."},
-      {v:1420,gray:.22,badge:"Subdivisión", title:"Subdivisión aprobada", text:"Subdividimos ante el SAG y el Conservador. Su paño grande pasa a ser varios lotes, cada uno con su propio rol."},
-      {v:1500,gray:0,  badge:"Listo",       title:"Listo para vender", text:"Con todo aprobado y urbanizado, su terreno vale mucho más que en crudo —y se vende mucho más rápido."}
+      {gray:1,   layers:0, badge:"Estudiamos",            title:"Estudiamos", text:"Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso."},
+      {gray:.88, layers:0, badge:"Compramos o invertimos",title:"Compramos o invertimos", text:"Le compramos ahora, o invertimos y desarrollamos su terreno junto a usted."},
+      {gray:.74, layers:1, badge:"Aprobamos",             title:"Aprobamos", text:"Conseguimos los permisos y las aprobaciones. Los trámites son nuestros."},
+      {gray:.6,  layers:1, badge:"Damos a conocer",       title:"Damos a conocer", text:"Armamos el plan de venta para llegar a quienes sí compran."},
+      {gray:.45, layers:2, badge:"Controlamos",           title:"Controlamos", text:"Supervisamos la obra y los plazos de principio a fin."},
+      {gray:.3,  layers:3, badge:"Ponemos en marcha",     title:"Ponemos en marcha", text:"Arrancan las obras, y no empiezan hasta que la inversión está asegurada."},
+      {gray:.15, layers:4, badge:"Entregamos",            title:"Entregamos", text:"Su terreno queda desarrollado: servicios y urbanización listos."},
+      {gray:0,   layers:4, badge:"Escrituramos",          title:"Escrituramos", text:"Usted firma la escritura, con lo legal y bancario resuelto."}
     ];
-    var cur=0, raf;
-    function dots(n){ return n.toString().replace(/\B(?=(\d{3})+(?!\d))/g,"."); }
-    function fmt(n){ return "$"+dots(n)+"M"; }
-    function tween(target, animate){
-      if(!numEl) return;
-      if(animate===false || reduced){ numEl.textContent=fmt(target); return; }
-      cancelAnimationFrame(raf);
-      var start=parseInt((numEl.textContent||"$0M").replace(/\D/g,""),10)||0, t0=performance.now(), dur=520;
-      (function stp(t){ var p=Math.min(1,(t-t0)/dur), e=1-Math.pow(1-p,3);
-        numEl.textContent=fmt(Math.round(start+(target-start)*e)); if(p<1) raf=requestAnimationFrame(stp); })(performance.now());
-    }
-    function set(i, animate){
+    var cur=0;
+    function set(i){
       i=Math.max(0,Math.min(STEPS.length-1,i)); cur=i; var s=STEPS[i];
       nodes.forEach(function(n,idx){ n.classList.toggle("is-active",idx===i); n.classList.toggle("is-done",idx<i); });
-      layers.forEach(function(l){ l.classList.toggle("is-on", parseInt(l.getAttribute("data-layer"),10)<=i); });
+      layers.forEach(function(l){ l.classList.toggle("is-on", parseInt(l.getAttribute("data-layer"),10)<=s.layers); });
       if(img) img.style.filter="grayscale("+s.gray+") brightness("+(0.9+0.1*(1-s.gray)).toFixed(2)+")";
       if(fill) fill.style.width=(i/(STEPS.length-1)*100)+"%";
       if(titleEl) titleEl.textContent=s.title;
       if(textEl) textEl.textContent=s.text;
       if(idxEl) idxEl.textContent=(i+1);
       if(badgeEl) badgeEl.textContent=s.badge;
-      tween(s.v, animate);
     }
     nodes.forEach(function(n){ n.addEventListener("click", function(){ g.classList.add("is-touched"); set(parseInt(n.getAttribute("data-grow-node"),10)); }); });
     g.addEventListener("keydown", function(e){
       if(e.key==="ArrowRight"){ e.preventDefault(); g.classList.add("is-touched"); set(cur+1); }
       else if(e.key==="ArrowLeft"){ e.preventDefault(); g.classList.add("is-touched"); set(cur-1); }
     });
-    set(0,false);
+    set(0);
   }
 
   /* ---------- Tilt 3D al mover el cursor ---------- */

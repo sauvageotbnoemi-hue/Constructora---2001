@@ -583,6 +583,52 @@ mark{background:linear-gradient(transparent 58%, rgba(255,105,15,.28) 58%);color
 @media(max-width:560px){.wfab span{display:none}.wfab{padding:.95rem;border-radius:50%}}
 @media(prefers-reduced-motion:reduce){.wfab{transition:opacity .2s linear}}
 
+/* ============================================================
+   COPY v5 — problema · proceso 8 pasos · dos caminos
+   ============================================================ */
+
+/* Lista que evidencia el problema */
+.problem-list{list-style:none;display:grid;gap:.5rem;margin:.5rem 0 1.4rem;padding:1.1rem 1.3rem;background:rgba(255,105,15,.07);border-left:3px solid var(--naranja);border-radius:0 10px 10px 0}
+.problem-list li{position:relative;padding-left:1.9rem;font-family:var(--display);font-weight:700;font-size:clamp(1.08rem,2vw,1.4rem);line-height:1.2;color:var(--verde)}
+.problem-list li::before{content:"✕";position:absolute;left:.2rem;top:0;color:var(--naranja);font-weight:800}
+
+/* Quiénes somos y cómo trabajamos */
+.somos{background:var(--crema);padding:clamp(4rem,9vw,7rem) 0 clamp(2rem,4vw,3rem)}
+.somos__cue{max-width:54ch;margin:clamp(1.4rem,3vw,2rem) auto 0;text-align:center;font-size:clamp(1.05rem,1.6vw,1.2rem);color:#43463d}
+.somos__cue b{color:var(--verde);font-weight:700}
+
+.proceso{background:var(--crema);padding-block:clamp(3rem,7vw,6rem)}
+.chapter{max-width:780px;margin-inline:auto}
+.chapter + .chapter{margin-top:clamp(2.2rem,4vw,3.2rem)}
+.chapter__eyebrow{display:flex;align-items:center;gap:.7rem;font-family:var(--display);font-weight:800;font-size:.82rem;letter-spacing:.14em;text-transform:uppercase;color:var(--naranja);margin-bottom:1rem}
+.chapter__eyebrow::before{content:"";width:30px;height:2px;background:var(--naranja);flex:none}
+.pstep{display:grid;grid-template-columns:auto 1fr;gap:1rem;padding:1.15rem 0;border-top:1px solid var(--line)}
+.pstep__n{flex:none;width:40px;height:40px;border-radius:11px;background:var(--verde);color:var(--crema);font-family:var(--display);font-weight:800;font-size:1.15rem;display:flex;align-items:center;justify-content:center}
+.pstep__t{font-family:var(--display);font-weight:800;font-size:clamp(1.1rem,1.9vw,1.35rem);color:var(--verde);margin-bottom:.3rem}
+.pstep__b p{color:#4a4d44;font-size:.98rem;line-height:1.55}
+.statement--light{background:#13291f;max-width:820px}
+.somos__close{max-width:900px;margin:clamp(2.4rem,5vw,3.6rem) auto 0;display:grid;grid-template-columns:260px 1fr;gap:clamp(1.4rem,3vw,2.4rem);align-items:center}
+.somos__photo{border-radius:12px;overflow:hidden;aspect-ratio:4/3;box-shadow:0 30px 60px -36px rgba(0,0,0,.5);margin:0}
+.somos__photo img{width:100%;height:100%;object-fit:cover}
+.somos__line{font-family:var(--display);font-weight:700;font-size:clamp(1.15rem,2vw,1.5rem);line-height:1.25;color:var(--verde)}
+.somos__line b{color:var(--naranja)}
+.somos__pend{margin-top:.7rem;font-size:.85rem;color:var(--muted);font-style:italic}
+@media(max-width:700px){.somos__close{grid-template-columns:1fr}.somos__photo{max-height:260px}}
+
+/* Visor del proceso (8 pasos, sin valor en pesos) */
+.vt--proc{grid-template-areas:"stage desc" "timeline timeline"}
+.vt--proc .vt__card--desc{display:flex;flex-direction:column;justify-content:center}
+.vt__hint{margin-top:1rem;font-size:.82rem;color:var(--muted);font-style:italic;transition:opacity .4s var(--ease)}
+.vt.is-touched .vt__hint{opacity:.35}
+@media(max-width:820px){.vt--proc{grid-template-areas:"stage" "desc" "timeline"}}
+@media(max-width:640px){.vt--proc .gnode__lbl{display:none}}
+
+/* Nombre del camino en el panel lateral */
+.camino__name{font-family:var(--display);font-weight:700;font-size:1.02rem;line-height:1.15;color:rgba(246,244,241,.92)}
+
+/* Línea de plazo bajo el resultado del ejemplo */
+.formula__when{display:block;font-size:.72rem;opacity:.85;margin-top:.35rem;color:#ffd9bd}
+
 @media (prefers-reduced-motion:reduce){
   .hero__scroll svg,.ba__handle svg,.pin__btn::before,.hero__bg img,.grow__guide span{animation:none}
   .hero__panels{display:none}
