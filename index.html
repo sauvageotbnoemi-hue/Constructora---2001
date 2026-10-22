@@ -8,7 +8,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css?v=20261022G" />
+<link rel="stylesheet" href="styles.css?v=20261022H" />
 <link rel="icon" href="assets/logo/isotipo-blanco.svg" type="image/svg+xml" />
 </head>
 <body>
@@ -86,59 +86,19 @@
     </div>
   </section>
 
-  <!-- ░░ RUTA DE VALOR — visor de 8 pasos ░░ -->
-  <section class="trans">
+  <!-- ░░ OCHO PASOS (editorial) ░░ -->
+  <section class="edproc">
     <div class="wrap">
-      <div class="vt vt--proc" data-grow data-reveal>
-        <figure class="vt__stage" data-tilt>
-          <img class="grow__img" data-grow-img src="assets/img/hero-parcela.jpg" alt="Un terreno visto desde arriba, transformándose paso a paso" />
-          <svg class="grow__ov" viewBox="0 0 2000 1123" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-            <g class="glayer" data-layer="1" fill="none">
-              <path class="groad" d="M700,905 L1490,882"/>
-              <path class="groad" d="M1092,905 L1098,360"/>
-            </g>
-            <g class="glayer" data-layer="2">
-              <g class="gserv"><circle class="gring" cx="905" cy="520" r="30"/><circle class="gdot" cx="905" cy="520" r="13"/></g>
-              <g class="gserv"><circle class="gring" cx="1255" cy="470" r="30"/><circle class="gdot" cx="1255" cy="470" r="13"/></g>
-              <g class="gserv"><circle class="gring" cx="1180" cy="770" r="30"/><circle class="gdot" cx="1180" cy="770" r="13"/></g>
-            </g>
-            <g class="glayer" data-layer="3" fill="none">
-              <g class="ggrid">
-                <path d="M840,452 L1362,442"/><path d="M834,572 L1366,564"/><path d="M830,690 L1368,684"/><path d="M840,800 L1305,798"/>
-                <path d="M960,352 L966,860"/><path d="M1090,346 L1096,852"/><path d="M1220,342 L1228,842"/>
-              </g>
-            </g>
-            <g class="glayer" data-layer="4">
-              <path class="gplot" d="M966,564 L1090,558 L1096,684 L966,690 Z"/>
-              <path class="gplot" d="M1096,558 L1220,552 L1228,678 L1096,684 Z"/>
-              <path class="gplot" d="M966,690 L1096,684 L1096,798 L966,800 Z"/>
-              <path class="gplot" d="M1096,684 L1228,678 L1230,798 L1096,798 Z"/>
-            </g>
-          </svg>
-          <span class="vt__tag vt__tag--leaf"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3c3 4 5 6.5 5 9a5 5 0 0 1-10 0c0-2.5 2-5 5-9z"/></svg>Desarrollo de suelo</span>
-          <span class="vt__tag vt__tag--loc">Su terreno</span>
-          <span class="vt__tag vt__tag--stage" data-grow-idx-badge>Estudiamos</span>
-        </figure>
-
-        <div class="vt__card vt__card--desc">
-          <span class="vt__eyebrow">Paso <b data-grow-idx>1</b> de 8</span>
-          <h4 class="grow__ctitle" data-grow-title>Estudiamos</h4>
-          <p class="grow__ctext" data-grow-text>Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso.</p>
-          <p class="vt__hint">Toque cada paso para ver cómo avanza su terreno →</p>
-        </div>
-
-        <div class="grow__track vt__timeline" data-grow-track role="group" aria-label="Los pasos de nuestro trabajo">
-          <div class="grow__rail"><span class="grow__fill" data-grow-fill></span></div>
-          <button class="gnode is-active" data-grow-node="0" type="button" aria-label="Paso 1: Estudiamos"><span class="gnode__dot"></span><span class="gnode__lbl">Estudiamos</span></button>
-          <button class="gnode" data-grow-node="1" type="button" aria-label="Paso 2: Compramos o invertimos"><span class="gnode__dot"></span><span class="gnode__lbl">Invertimos</span></button>
-          <button class="gnode" data-grow-node="2" type="button" aria-label="Paso 3: Aprobamos"><span class="gnode__dot"></span><span class="gnode__lbl">Aprobamos</span></button>
-          <button class="gnode" data-grow-node="3" type="button" aria-label="Paso 4: Damos a conocer"><span class="gnode__dot"></span><span class="gnode__lbl">Difundimos</span></button>
-          <button class="gnode" data-grow-node="4" type="button" aria-label="Paso 5: Controlamos"><span class="gnode__dot"></span><span class="gnode__lbl">Controlamos</span></button>
-          <button class="gnode" data-grow-node="5" type="button" aria-label="Paso 6: Ponemos en marcha"><span class="gnode__dot"></span><span class="gnode__lbl">En marcha</span></button>
-          <button class="gnode" data-grow-node="6" type="button" aria-label="Paso 7: Entregamos"><span class="gnode__dot"></span><span class="gnode__lbl">Entregamos</span></button>
-          <button class="gnode" data-grow-node="7" type="button" aria-label="Paso 8: Escrituramos"><span class="gnode__dot"></span><span class="gnode__lbl">Escrituramos</span></button>
-        </div>
-      </div>
+      <ol class="edgrid" data-reveal>
+        <li class="edcell"><span class="edcell__n">01</span><h4 class="edcell__t">Estudiamos</h4><p class="edcell__p">Miramos su terreno y vemos qué se puede hacer, antes de gastar un peso.</p></li>
+        <li class="edcell"><span class="edcell__n">02</span><h4 class="edcell__t">Compramos o invertimos</h4><p class="edcell__p">Le compramos ahora, o invertimos y desarrollamos su terreno junto a usted.</p></li>
+        <li class="edcell"><span class="edcell__n">03</span><h4 class="edcell__t">Aprobamos</h4><p class="edcell__p">Conseguimos los permisos y las aprobaciones. Los trámites son nuestros.</p></li>
+        <li class="edcell"><span class="edcell__n">04</span><h4 class="edcell__t">Damos a conocer</h4><p class="edcell__p">Armamos el plan de venta para llegar a quienes sí compran.</p></li>
+        <li class="edcell"><span class="edcell__n">05</span><h4 class="edcell__t">Controlamos</h4><p class="edcell__p">Supervisamos la obra y los plazos de principio a fin.</p></li>
+        <li class="edcell"><span class="edcell__n">06</span><h4 class="edcell__t">Ponemos en marcha</h4><p class="edcell__p">Arrancan las obras, con la inversión ya asegurada.</p></li>
+        <li class="edcell"><span class="edcell__n">07</span><h4 class="edcell__t">Entregamos</h4><p class="edcell__p">Su terreno queda desarrollado: servicios y urbanización listos.</p></li>
+        <li class="edcell"><span class="edcell__n">08</span><h4 class="edcell__t">Escrituramos</h4><p class="edcell__p">Usted firma la escritura, con lo legal y bancario resuelto.</p></li>
+      </ol>
     </div>
   </section>
 
@@ -342,6 +302,6 @@
   <span>Hablemos</span>
 </a>
 
-<script defer src="main.js?v=20261022G"></script>
+<script defer src="main.js?v=20261022H"></script>
 </body>
 </html>
